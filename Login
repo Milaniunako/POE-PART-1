@@ -87,7 +87,7 @@ class Login {
       System.out.print("Enter password: ");
       String password = sc.nextLine();
       if (username.equals(this.storedUsername) && password.equals(this.storedPassword)) {
-         System.out.println("Welcome back! Login successful.");
+         System.out.println("Welcome back, login successful.");
       } else {
          System.out.println("Username or password incorrect, please try again.");
       }
