@@ -1,0 +1,100 @@
+import java.util.Scanner;
+
+class Login {
+   private String storedUsername;
+   private String storedPassword;
+   private String storedPhone;
+
+   Login() {
+   }
+
+   public boolean checkUserName(String username) {
+      return username.contains("_") && username.length() <= 5;
+   }
+
+   public boolean checkPassword(String password) {
+      if (password.length() < 8) {
+         return false;
+      } else {
+         boolean hasUpper = false;
+         boolean hasNumber = false;
+         boolean hasSpecial = false;
+
+         for(int i = 0; i < password.length(); ++i) {
+            char ch = password.charAt(i);
+            if (Character.isUpperCase(ch)) {
+               hasUpper = true;
+            } else if (Character.isDigit(ch)) {
+               hasNumber = true;
+            } else if (!Character.isLetterOrDigit(ch)) {
+               hasSpecial = true;
+            }
+         }
+
+         return hasUpper && hasNumber && hasSpecial;
+      }
+   }
+
+   public boolean checkPhone(String phone) {
+      if (!phone.startsWith("+27")) {
+         return false;
+      } else if (phone.length() != 12) {
+         return false;
+      } else {
+         for(int i = 3; i < phone.length(); ++i) {
+            if (!Character.isDigit(phone.charAt(i))) {
+               return false;
+            }
+         }
+
+         return true;
+      }
+   }
+
+   public void register(Scanner sc) {
+      System.out.println("=== REGISTER ===");
+      System.out.print("Enter username: ");
+      String username = sc.nextLine();
+      if (this.checkUserName(username)) {
+         System.out.println("Username successfully captured.");
+         this.storedUsername = username;
+         System.out.print("Enter password: ");
+         String password = sc.nextLine();
+         if (this.checkPassword(password)) {
+            System.out.println("Password successfully captured.");
+            this.storedPassword = password;
+            System.out.print("Enter cell phone (+27...): ");
+            String phone = sc.nextLine();
+            if (this.checkPhone(phone)) {
+               System.out.println("Cell phone number successfully added.");
+               this.storedPhone = phone;
+               System.out.println("Registration successful!\n");
+            } else {
+               System.out.println("Cell phone number incorrectly formatted.");
+            }
+         } else {
+            System.out.println("Password is not correctly formatted.");
+         }
+      } else {
+         System.out.println("Username is not correctly formatted.");
+      }
+   }
+
+   public void login(Scanner sc) {
+      System.out.println("=== LOGIN ===");
+      System.out.print("Enter username: ");
+      String username = sc.nextLine();
+      System.out.print("Enter password: ");
+      String password = sc.nextLine();
+      if (username.equals(this.storedUsername) && password.equals(this.storedPassword)) {
+         System.out.println("Welcome back! Login successful.");
+      } else {
+         System.out.println("Username or password incorrect, please try again.");
+      }
+
+   }
+
+   public String getStoredPhone() {
+      return this.storedPhone;
+   }
+}
