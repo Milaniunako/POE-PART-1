@@ -11,7 +11,7 @@ class Login {
         return username.contains("_") && username.length() <= 5;
     }
 
-    // Password validation (NO regex)
+    // Password validation
     public boolean checkPassword(String password) {
 
         if (password.length() < 8) return false;
@@ -53,7 +53,7 @@ class Login {
     // Register method
     public void register(Scanner sc) {
 
-        System.out.println("=== REGISTER ===");
+        System.out.println("REGISTER");
 
         System.out.print("Enter username: ");
         String username = sc.nextLine();
@@ -115,7 +115,6 @@ class Login {
 }
 
 public class Main {
-    @SuppressWarnings("ConvertToTryWithResources")
     public static void main(String[] args) {
 
         var sc = new Scanner(System.in);
