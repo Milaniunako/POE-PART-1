@@ -35,7 +35,7 @@ class Login {
         return hasUpper && hasNumber && hasSpecial;
     }
 
-    // Cell phone validation (NO regex)
+    // Cell phone validation 
     public boolean checkPhone(String phone) {
 
         if (!phone.startsWith("+27")) return false;
